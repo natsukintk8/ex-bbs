@@ -1,10 +1,14 @@
 package com.example.ex_bbs.controller;
 
+import com.example.ex_bbs.domain.Article;
 import com.example.ex_bbs.repository.ArticleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 /**
  * 記事関連情報の処理の制御を行うコントローラです.
@@ -21,7 +25,9 @@ public class ArticleController {
      * @return 記事一覧画面
      */
     @GetMapping("")
-    public String index(){
+    public String index(Model model){
+        List<Article> articleList = articleRepository.findAll();
+        model.addAttribute("articleList",articleList);
         return "article-list";
     }
 
