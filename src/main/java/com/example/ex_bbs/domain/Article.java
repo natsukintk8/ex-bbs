@@ -1,15 +1,19 @@
 package com.example.ex_bbs.domain;
 
+import java.util.List;
+
 /**
  * 記事情報を表すドメインクラスです.
  */
-public class Articles {
+public class Article {
     /**　ID　*/
     private Integer id;
     /**　投稿者名　*/
     private String name;
     /**　投稿内容　*/
     private String content;
+    /**　コメントリスト　*/
+    private List<Comment> commentList;
 
     public Integer getId() {
         return id;
