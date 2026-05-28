@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * articlesテーブルを操作するリポジトリです.
+ * commentsテーブルを操作するリポジトリです.
  */
 @Repository
 public class CommentRepository {
@@ -36,6 +36,8 @@ public class CommentRepository {
                   comments
                  WHERE
                   article_id = :article_id
+                 ORDER BY
+                  id DESC
                 """;
 
         SqlParameterSource param = new MapSqlParameterSource()

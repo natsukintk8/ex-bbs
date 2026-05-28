@@ -31,15 +31,13 @@ public class ArticleController {
      * @return 記事一覧画面
      */
     @GetMapping("")
-    public String index(Model model){
+    public String index(Model model) {
         List<Article> articleList = articleRepository.findAll();
-        model.addAttribute("articleList",articleList);
-        Article article = new Article();
-        for (Article articleInfo :articleList){
+        for (Article articleInfo : articleList) {
             Integer articleId = articleInfo.getId();
-            article.setCommentList(commentRepository.findByArticleId(articleId));
+            articleInfo.setCommentList(commentRepository.findByArticleId(articleId));
         }
-        model.addAttribute("commentList",article.getCommentList());
+        model.addAttribute("articleList", articleList);
         return "article-list";
     }
 
@@ -50,7 +48,7 @@ public class ArticleController {
      * @return 記事一覧画面
      */
     @PostMapping("/insert-article")
-    public String insertArticle(Article article){
+    public String insertArticle(Article article) {
         articleRepository.insert(article);
         return "redirect:/article";
     }
