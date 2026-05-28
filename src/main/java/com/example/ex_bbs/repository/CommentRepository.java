@@ -79,7 +79,8 @@ public class CommentRepository {
                   article_id = :articleId
                 """;
 
-        SqlParameterSource param = new BeanPropertySqlParameterSource(articleId);
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("articleId",articleId);
         template.update(sql,param);
     }
 }
