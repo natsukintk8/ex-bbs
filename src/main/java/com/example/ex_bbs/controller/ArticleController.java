@@ -53,5 +53,17 @@ public class ArticleController {
         return "redirect:/article";
     }
 
+    /**
+     * コメントを投稿する.
+     *
+     * @param comment 投稿内容
+     * @return 記事一覧画面
+     */
+    @PostMapping("/insert-comment")
+    public String insertComment(Comment comment){
+        commentRepository.insert(comment);
+        return "redirect:/article";
+    }
+
 
 }
