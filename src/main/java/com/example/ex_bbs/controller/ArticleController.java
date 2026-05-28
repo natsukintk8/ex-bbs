@@ -41,7 +41,7 @@ public class ArticleController {
     @PostMapping("/insert-article")
     public String insertArticle(Article article){
         articleRepository.insert(article);
-        return "article-list";
+        return "redirect:/article";
     }
 
 
