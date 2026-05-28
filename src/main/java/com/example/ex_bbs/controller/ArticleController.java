@@ -65,5 +65,19 @@ public class ArticleController {
         return "redirect:/article";
     }
 
+    /**
+     *記事とコメントを削除する.
+     *
+     * @param id ID
+     * @param articleId 記事ID
+     * @return 記事一覧画面
+     */
+    @PostMapping("/delete-article")
+    public String deleteArticle(Integer id,Integer articleId){
+     articleRepository.deleteById(id);
+     commentRepository.deleteByArticleId(articleId);
+     return "redirect:/article";
+
+    }
 
 }
