@@ -15,6 +15,15 @@
     投稿者名：<span th:text="${article.name}"></span><br>
     投稿内容：<br>
     <span th:text="${article.content}"></span>
+    <form action="">
+        <button>記事削除</button>
+    </form>
+    <div th:each="comment:${commentList}">
+        コメント者名：<span th:text="${comment.name}"></span><br>
+        コメント内容：<br>
+        <span th:text="${comment.content}"></span>
+    </div>
+    <hr>
 </div>
 </body>
 </html>
