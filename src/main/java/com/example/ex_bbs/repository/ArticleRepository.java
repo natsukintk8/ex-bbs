@@ -56,4 +56,21 @@ public class ArticleRepository {
         SqlParameterSource param = new BeanPropertySqlParameterSource(article);
         template.update(sql,param);
     }
+
+    /**
+     * 記事を削除する.
+     *
+     * @param id ID
+     */
+    public void deleteById(int id){
+        String sql= """
+                 DELETE FROM
+                  articles
+                 WHERE
+                  id = :id
+                """;
+
+        SqlParameterSource param = new BeanPropertySqlParameterSource(id);
+        template.update(sql,param);
+    }
 }
