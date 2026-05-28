@@ -65,4 +65,21 @@ public class CommentRepository {
 
         template.update(sql,param);
     }
+
+    /**
+     * コメントを削除する.
+     *
+     * @param articleId 記事ID
+     */
+    public void deleteByArticleId(int articleId){
+        String sql= """
+                 DELETE FROM
+                  comments
+                 WHERE
+                  article_id = :articleId
+                """;
+
+        SqlParameterSource param = new BeanPropertySqlParameterSource(articleId);
+        template.update(sql,param);
+    }
 }
