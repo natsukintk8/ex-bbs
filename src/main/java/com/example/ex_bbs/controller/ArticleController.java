@@ -1,7 +1,9 @@
 package com.example.ex_bbs.controller;
 
 import com.example.ex_bbs.domain.Article;
+import com.example.ex_bbs.domain.Comment;
 import com.example.ex_bbs.repository.ArticleRepository;
+import com.example.ex_bbs.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,9 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     /**
      * 記事一覧画面に遷移する.
      *
@@ -29,6 +34,12 @@ public class ArticleController {
     public String index(Model model){
         List<Article> articleList = articleRepository.findAll();
         model.addAttribute("articleList",articleList);
+        Article article = new Article();
+        for (Article articleInfo :articleList){
+            Integer articleId = articleInfo.getId();
+            article.setCommentList(commentRepository.findByArticleId(articleId));
+        }
+        model.addAttribute("commentList",article.getCommentList());
         return "article-list";
     }
 
