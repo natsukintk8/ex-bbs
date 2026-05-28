@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -70,7 +71,8 @@ public class ArticleRepository {
                   id = :id
                 """;
 
-        SqlParameterSource param = new BeanPropertySqlParameterSource(id);
+        SqlParameterSource param = new MapSqlParameterSource()
+                .addValue("id",id);
         template.update(sql,param);
     }
 }
