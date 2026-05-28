@@ -43,7 +43,7 @@ public class ArticleRepository {
     /**
      * 記事を投稿する.
      *
-     * @param article 記事
+     * @param article 投稿内容
      */
     public void insert(Article article){
         String sql = """
