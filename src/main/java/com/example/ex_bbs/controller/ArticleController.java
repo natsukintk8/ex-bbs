@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -28,6 +29,18 @@ public class ArticleController {
     public String index(Model model){
         List<Article> articleList = articleRepository.findAll();
         model.addAttribute("articleList",articleList);
+        return "article-list";
+    }
+
+    /**
+     * 記事を投稿する.
+     *
+     * @param article 投稿内容
+     * @return 記事一覧画面
+     */
+    @PostMapping("/insert-article")
+    public String insertArticle(Article article){
+        articleRepository.insert(article);
         return "article-list";
     }
 
